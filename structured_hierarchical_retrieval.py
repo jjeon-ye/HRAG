@@ -76,15 +76,15 @@ def tree_search(query_text, top_k):
         # openai_api_key="API_KEY" 
     )
 
-    cpic_guidelines_context = StorageContext.from_defaults(persist_dir="./index/cpic_guidelines_tree_index_tables")
-    cpic_gene_context = StorageContext.from_defaults(persist_dir="./index/cpic_gene_tree_index_tables")
+    cpic_guidelines_context = StorageContext.from_defaults(persist_dir= index_directory)
+    cpic_gene_context = StorageContext.from_defaults(persist_dir= index_directory2)
 
     cpic_guidelines_tree_index = load_index_from_storage(cpic_guidelines_context, embed_model=embed_model)
     cpic_gene_tree_index = load_index_from_storage(cpic_gene_context, embed_model=embed_model)
 
     cpic_tree_manager = TreeIndexManager(cpic_guidelines_tree_index, cpic_gene_tree_index, embed_model=embed_model)
 
-    dpwg_storage_context = StorageContext.from_defaults(persist_dir="./index/dpwg_tree_index_tables")
+    dpwg_storage_context = StorageContext.from_defaults(persist_dir=index_directory3)
     dpwg_tree_index = load_index_from_storage(dpwg_storage_context, embed_model=embed_model)
 
     cpic_best_results = cpic_tree_manager.query_tree_index(query_text, top_k=top_k)
@@ -131,7 +131,7 @@ def get_structural_info(tree_index, label):
 def construct_trees():
 
     # guildelines
-    source_dir = "./data/guidelines"
+    source_dir = data_path
     documents = load_documents(source_dir)
 
     cpic_documents = [doc for doc in documents if "cpic" in doc.metadata["source"].lower()]
@@ -144,7 +144,7 @@ def construct_trees():
     dpwg_guidelines_tree_index = create_tree_index(dpwg_nodes)
 
     # cpic gene(function, frequency)
-    source_dir = "./data/allele_func_freq"
+    source_dir =  data_path
     documents = load_documents(source_dir)
 
     cpic_gene_nodes = create_hierarchical_nodes(documents)
