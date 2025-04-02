@@ -1,0 +1,23 @@
+openai:
+  api_key: API_KEY
+  embedding_model_name: text-embedding-ada-002
+  chat_model_name: gpt-4
+  chat_search_type: mmr 
+  chat_search_k: 4        
+
+chromadb:
+  persist_directory: /storage/sample/
+  chroma_db_impl: duckdb+parquet
+  collection_name: anticancer_collection
+
+
+data:
+  directory:
+    - /storage/sample/
+
+parse_pdf:
+  chunk_size: 512
+  chunk_overlap: 15
+
+validation_file:
+  ./data/llm_gt.csv
