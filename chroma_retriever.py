@@ -64,23 +64,9 @@ class ChromaRetriever:
             **kwargs,
         )
 
-def main():
-    yamlfile = "/storage/home/jyjeon830/RAG/test_jyj.yaml"
-    config = OmegaConf.load(yamlfile)
-    db = ChromaRetriever(config)
-    question = "A patient with a CYP2D6 *4/*4 is being prescribed tamoxifen for breast cancer treatment. What is the recommended course of action for tamoxifen dosage or alternative therapy? "
-    docs = db.max_marginal_relevance_search(question)
-    print(type(docs))
-    print(docs)
-    context = ""
-    for doc in docs:
-        context = context + doc.page_content + "\n"
-
-    print(context)
 
 if __name__ == "__main__":
-    main()
-
+   
 
 
 
