@@ -39,15 +39,11 @@ def get_response_with_retrieval(df):
 
 
 if __name__ == "__main__":
-    df = pd.read_csv("./data/PGxQA/anticancer_eval_subsets.txt", sep ='\t')
-
-    exclude_files = ["refusal_subset.txt"]
-
+    df = pd.read_csv(test_file_path, sep ='\t')
     client = openai.OpenAI()
 
-    yamlfile = "./config.yaml"
     config = OmegaConf.load(yamlfile)
     chroma_retriever = ChromaRetriever(config)
 
     result = get_response_with_retrieval(df)
-    result.to_csv("./results/vector_rag_response_all.txt",sep='\t',index=False)
+    result.to_csv(output_path,sep='\t',index=False)
