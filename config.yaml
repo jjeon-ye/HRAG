@@ -10,7 +10,6 @@ chromadb:
   chroma_db_impl: duckdb+parquet
   collection_name: anticancer_collection
 
-
 data:
   directory:
     - /storage/sample/
@@ -19,5 +18,3 @@ parse_pdf:
   chunk_size: 512
   chunk_overlap: 15
 
-validation_file:
-  ./data/llm_gt.csv
