@@ -39,10 +39,8 @@ def get_response_with_retrieval(df):
         return df
 
 if __name__ == "__main__":
-    df = pd.read_csv("./data/PGxQA/anticancer_eval_subsets.txt", sep ='\t')
-    exclude_files = ["refusal_subset.txt"]
-
+    df = pd.read_csv(test_file_path, sep ='\t')
     client = openai.OpenAI()
 
     result = get_response_with_retrieval(df)
-    result.to_csv("./results/hrag_response_all.txt",sep='\t',index=False)
+    result.to_csv(output_path,sep='\t',index=False)
