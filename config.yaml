@@ -15,6 +15,7 @@ data:
     - /storage/sample/
 
 parse_pdf:
-  chunk_size: 512
-  chunk_overlap: 15
+  chunk_size: 1000
+  chunk_overlap: 50
+  
 
