@@ -39,8 +39,13 @@ def get_response_with_retrieval(df):
         return df
 
 if __name__ == "__main__":
-    df = pd.read_csv(test_file_path, sep ='\t')
+
+    # If you want to run this script with the question set from PGxQA,
+    # please download the test queries from the following repository: https://github.com/KarlKeat/PGxQA/tree/main/test_queries
+    test_file_path = "./test/"
+
+    df = pd.read_csv(test_file_path)
     client = openai.OpenAI()
 
     result = get_response_with_retrieval(df)
-    result.to_csv(output_path,sep='\t',index=False)
+    result.to_csv(output_path, index=False)
