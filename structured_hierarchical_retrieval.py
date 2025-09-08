@@ -128,36 +128,5 @@ def get_structural_info(tree_index, label):
         print(f"  - Immediate children: {len(children)}")
         print(f"  - Max depth of tree: {max_depth}")
 
-def construct_trees():
-
-    # guildelines
-    source_dir = data_path
-    documents = load_documents(source_dir)
-
-    cpic_documents = [doc for doc in documents if "cpic" in doc.metadata["source"].lower()]
-    dpwg_documents = [doc for doc in documents if "dpwg" in doc.metadata["source"].lower()]
-
-    cpic_nodes = create_hierarchical_nodes(cpic_documents)
-    dpwg_nodes = create_hierarchical_nodes(dpwg_documents)
-
-    cpic_guidelines_tree_index = create_tree_index(cpic_nodes)
-    dpwg_guidelines_tree_index = create_tree_index(dpwg_nodes)
-
-    # cpic gene(function, frequency)
-    source_dir =  data_path
-    documents = load_documents(source_dir)
-
-    cpic_gene_nodes = create_hierarchical_nodes(documents)
-    cpic_gene_tree_index = create_tree_index(cpic_gene_nodes)
-
-    # store tree index
-    cpic_guidelines_tree_index.storage_context.persist(persist_dir="./index/cpic_guidelines_tree_index_tables")
-    dpwg_guidelines_tree_index.storage_context.persist(persist_dir="./index/dpwg_tree_index_tables")
-    cpic_gene_tree_index.storage_context.persist(persist_dir="./index/cpic_gene_tree_index_tables")
-
-    cpic_tree_manager = TreeIndexManager(cpic_guidelines_tree_index, cpic_gene_tree_index)
-
-    return cpic_tree_manager, dpwg_guidelines_tree_index
-
 if __name__ == "__main__":
-    construct_trees()
+    tree_search(query_text, top_k)
