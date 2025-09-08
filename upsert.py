@@ -16,14 +16,6 @@ class CustomDocument(Document):
         super().__init__(text=text, metadata=metadata)
         self.id_ = id_
 
-'''
-def create_parser():
-    parser = argparse.ArgumentParser(description='demo how to use ai embeddings to chat.')
-    parser.add_argument("-y", "--yaml", dest="yamlfile",
-                        help="Yaml file for project", metavar="YAML")
-    return parser
-'''
-
 def extract_drug_name(file_name):
     """
     Extracts the drug name from the file name using a predefined pattern.
